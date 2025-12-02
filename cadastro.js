@@ -16,24 +16,29 @@ form.addEventListener("submit", async (e) => {
     }
 
     const tarefa = {
-        prioridade,
-        descricao,
-        local,
+        prioridade: prioridade,
+        descricao: descricao,
+        local: local,
         recursosNecessarios: recursos ? recursos.split(",").map(r => r.trim()) : [],
-        dataLimite,
+        dataLimite: dataLimite,
         matricula: Number(matricula)
     };
 
-    const response = await fetch("http://159.65.228.63/produtos", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(tarefa)
-    });
+    try {
+        const response = await fetch("http://159.65.228.63/produtos", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(tarefa)
+        });
 
-    if (response.ok) {
-        alert("Tarefa cadastrada com sucesso!");
-        window.location.href = "index.html";
-    } else {
-        alert("Erro ao cadastrar tarefa.");
+        if (response.ok) {
+            alert("Tarefa cadastrada com sucesso!");
+            window.location.href = "index.html";
+        } else {
+            alert("Erro ao cadastrar tarefa.");
+        }
+    } catch (error) {
+        alert("Erro ao conectar com o servidor.");
+        console.error(error);
     }
 });
