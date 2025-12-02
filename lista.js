@@ -2,7 +2,7 @@ async function carregarTarefas() {
     const container = document.getElementById("lista-container");
 
     try {
-        const response = await fetch("https://159.65.228.63/produtos");
+        const response = await fetch("http://159.65.228.63/produtos");
         const tarefas = await response.json();
 
         if (!tarefas.length) {
