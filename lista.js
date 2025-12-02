@@ -5,7 +5,10 @@ async function carregarTarefas() {
         const response = await fetch("http://159.65.228.63/produtos");
         const tarefas = await response.json();
 
-        if (!tarefas.length) {
+        // Caso a API retorne um objeto em vez de array
+        const lista = Array.isArray(tarefas) ? tarefas : [tarefas];
+
+        if (!lista.length) {
             container.innerHTML = "<p class='vazio'>Nenhuma tarefa cadastrada</p>";
             return;
         }
@@ -25,16 +28,33 @@ async function carregarTarefas() {
                 <tbody>
         `;
 
-        tarefas.forEach(t => {
-            const classePrioridade = t.prioridade === "Urgente" ? "urgente" : "";
+        lista.forEach(t => {
+            const prioridade = t.prioridade || t.Prioridade || "—";
+            const descricao = t.descricao || t.Descricao || "—";
+            const local = t.local || t.Local || "—";
+            const matricula = t.matricula || t.Matricula || "—";
+            const dataLimite = t.dataLimite || t.DataLimite || "—";
+            let recursos = "—";
+
+            if (Array.isArray(t.recursosNecessarios)) {
+                recursos = t.recursosNecessarios.join(", ");
+            } else if (typeof t.recursosNecessarios === "string") {
+                recursos = t.recursosNecessarios;
+            } else if (Array.isArray(t.recursos)) {
+                recursos = t.recursos.join(", ");
+            } else if (typeof t.recursos === "string") {
+                recursos = t.recursos;
+            }
+            const classePrioridade = prioridade.toLowerCase() === "urgente" ? "urgente" : "";
+
             html += `
                 <tr class="${classePrioridade}">
-                    <td>${t.prioridade}</td>
-                    <td>${t.descricao}</td>
-                    <td>${t.local}</td>
-                    <td>${t.recursosNecessarios.join(", ")}</td>
-                    <td>${t.dataLimite}</td>
-                    <td>${t.matricula}</td>
+                    <td>${prioridade}</td>
+                    <td>${descricao}</td>
+                    <td>${local}</td>
+                    <td>${recursos}</td>
+                    <td>${dataLimite}</td>
+                    <td>${matricula}</td>
                 </tr>
             `;
         });
@@ -44,6 +64,7 @@ async function carregarTarefas() {
 
     } catch (error) {
         container.innerHTML = "<p class='erro'>Erro ao carregar tarefas.</p>";
+        console.error("Erro ao carregar tarefas:", error);
     }
 }
 
