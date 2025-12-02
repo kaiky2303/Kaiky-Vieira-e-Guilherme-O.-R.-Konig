@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background: #f4f4f4;
+}
+
+h1 {
+    text-align: center;
+}
+
+form, table {
+    width: 80%;
+    margin: auto;
+}
+
+label {
+    margin-top: 10px;
+    display: block;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+.btn, .btn-voltar {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #0077cc;
+    color: white;
+    text-decoration: none;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.btn-voltar {
+    background: gray;
+}
+
+table {
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #999;
+}
+
+td, th {
+    padding: 10px;
+    text-align: center;
+}
+
+.vazio {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 40px;
+}
+
+.urgente {
+    color: red;
+    font-weight: bold;
+}
+
+.erro {
+    text-align: center;
+    color: red;
+    font-size: 18px;
+}

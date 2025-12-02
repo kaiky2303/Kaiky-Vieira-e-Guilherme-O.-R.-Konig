@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Tarefa</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Cadastrar Nova Tarefa</h1>
+
+    <form id="form">
+        <label>Prioridade:</label>
+        <select id="prioridade" required>
+            <option value="">Selecione</option>
+            <option value="Baixa">Baixa</option>
+            <option value="Normal">Normal</option>
+            <option value="Urgente">Urgente</option>
+        </select>
+
+        <label>Descrição:</label>
+        <input type="text" id="descricao" required>
+
+        <label>Local:</label>
+        <input type="text" id="local" required>
+
+        <label>Recursos Necessários (separe por vírgula):</label>
+        <input type="text" id="recursos">
+
+        <label>Data Limite:</label>
+        <input type="datetime-local" id="dataLimite" required>
+
+        <label>Matrícula:</label>
+        <input type="number" id="matricula" required>
+
+        <button type="submit" class="btn">Cadastrar</button>
+    </form>
+
+    <a href="index.html" class="btn-voltar">Voltar</a>
+
+    <script src="cadastro.js"></script>
+</body>
+</html>
