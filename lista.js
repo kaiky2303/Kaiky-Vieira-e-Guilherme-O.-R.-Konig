@@ -4,8 +4,7 @@ async function carregarTarefas() {
     try {
         const response = await fetch("http://159.65.228.63/produtos");
         const tarefas = await response.json();
-
-        // Caso a API retorne um objeto em vez de array
+        
         const lista = Array.isArray(tarefas) ? tarefas : [tarefas];
 
         if (!lista.length) {
