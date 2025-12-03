@@ -58,7 +58,7 @@ async function carregarTarefas() {
             `;
         });
 
-        html += "</tbody></table>";
+        html += "</tbody></table>";a
         container.innerHTML = html;
 
     } catch (error) {
